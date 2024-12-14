@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 
 # Load the pre-trained model
-script_dir = os.path.dirname(os.path.realpath(_file_)) #get the path of current file (i.e., flask_app.py)
+script_dir = os.path.dirname(os.path.realpath(__file__)) #get the path of current file (i.e., flask_app.py)
 model_path = os.path.join(script_dir, 'xenocanto.h5') #w concatenate with model file name; nees absolute file path
 # model = joblib.load(model_path)
 
