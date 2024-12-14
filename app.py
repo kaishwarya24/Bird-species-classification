@@ -6,13 +6,21 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import StandardScaler
 import tensorflow as tf
 import joblib
+import os 
 
 app = Flask(__name__)
 
 # Load the pre-trained model
-model_path = 'xenocanto.h5'
+script_dir = os.path.dirname(os.path.realpath(_file_)) #get the path of current file (i.e., flask_app.py)
+model_path = os.path.join(script_dir, 'xenocanto.h5') #w concatenate with model file name; nees absolute file path
+# model = joblib.load(model_path)
+
+# model_path = 'xenocanto.h5'
+
 model = load_model(model_path)
-scaler = joblib.load('scaler.pkl')  
+# script_dir = os.path.dirname(os.path.realpath(_file_)) #get the path of current file (i.e., flask_app.py)
+scaler_path = os.path.join(script_dir, 'scaler.pkl') #w concatenate with model file name; nees absolute file path
+scaler = joblib.load(scaler_path)  
 
 def extract_features(audio, sr):
     try:
